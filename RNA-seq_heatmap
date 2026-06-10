@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+
+"""
+Generates a heatmap for a computeMatrix tab file containing RNA-seq signal data.
+
+Usage:
+    python3 plot.py --input_rna_tab path/to/RNA_tab.tab   sample ex : reordered_tab_final.tab
+
+Features:
+- Selects numeric signal values and replaces missing values with 0.
+- X-axis: positions relative to TSS (-1kb, TSS, +1kb).
+- Y-axis: genes (rows)
+- Includes percentile-based color scaling and a signal colorbar.
+
+"""
+
+import argparse
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate heatmap for RNA-seq computeMatrix tab file")
+    parser.add_argument("--input_ptm_tab", required=True, help="Path to reordered PTM tab file")
+    args = parser.parse_args()
+
+    # input
+    df = pd.read_csv(args.input_ptm_tab,  sep='\t', comment='#', header=0)
+
+    # select only signal columns
+    signal_df = df.select_dtypes(include=[np.number]).fillna(0).values
+
+    # number of bins
+    _, num_bins = data.shape
+
+    tss_bin = num_bins//2  # appluicable only if the regions before and after TSS are equal
+
+    vmax = np.percentile(data, 99)
+
+    # Plot heatmap
+    plt.figure(figsize=(3, 12))
+    im = plt.imshow(data, cmap='bwr', aspect='auto', vmin=0, vmax=vmax)
+
+    # X-axis labels
+    plt.xticks([0, tss_bin, num_bins - 1],['-1 kb', 'TSS', '+1 kb'])
+    plt.yticks([])
+    plt.xlabel('Genomic position')
+    plt.ylabel('Genes')
+    plt.title('RNA-seq Signal Heatmap')
+
+    # colorbar
+    plt.colorbar(im, label='Signal', fraction=0.02, pad=0.04)
+
+    plt.tight_layout()
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()
