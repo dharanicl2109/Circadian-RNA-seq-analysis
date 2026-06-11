@@ -11,6 +11,7 @@ Features:
 - X-axis: positions relative to TSS (-1kb, TSS, +1kb).
 - Y-axis: genes (rows)
 - Includes percentile-based color scaling and a signal colorbar.
+- vmax may be changed accordingly.
 
 """
 
