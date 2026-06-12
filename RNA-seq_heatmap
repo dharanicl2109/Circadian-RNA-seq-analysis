@@ -30,6 +30,7 @@ def main():
 
     # select only signal columns
     signal_df = df.select_dtypes(include=[np.number]).fillna(0).values
+    data = signal_df.values
 
     # number of bins
     _, num_bins = data.shape
@@ -50,7 +51,9 @@ def main():
     plt.title('RNA-seq Signal Heatmap')
 
     # colorbar
-    plt.colorbar(im, label='Signal', fraction=0.02, pad=0.04)
+    cbar = plt.colorbar(im, label='Signal', fraction=0.02, pad=0.04)
+    char.set_label('Signal')
+    cbar.ax.tick_params()
 
     plt.tight_layout()
     plt.show()
