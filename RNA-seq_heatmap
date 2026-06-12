@@ -36,7 +36,8 @@ def main():
     _, num_bins = data.shape
 
     tss_bin = num_bins//2  # appluicable only if the regions before and after TSS are equal
-
+    
+    # vmax
     vmax = np.percentile(data, 99)
 
     # Plot heatmap
