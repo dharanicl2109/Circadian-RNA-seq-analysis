@@ -13,6 +13,7 @@ Features:
 - Includes percentile-based color scaling and a signal colorbar.
 - vmax may be changed accordingly.
 
+
 """
 
 import argparse
