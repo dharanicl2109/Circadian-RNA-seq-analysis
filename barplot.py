@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 def main():
     parser = argparse.ArgumentParser(description="Generate barplot of R2 values of each PTM timepoint-wise ")
     parser.add_argument("--input_r2", required=True, help="Path to CSV file containing R2 values")
-    #parser.add_argument("--output_plot", required=True, help="Path to save output plot")
+    parser.add_argument("--output_plot", required=True, help="Path to save output plot")
     args = parser.parse_args()
 
     df = pd.read_csv(args.input_r2)
@@ -38,7 +38,7 @@ def main():
     plt.tight_layout()
 
     # Save plot
-    #plt.savefig(args.output_plot, dpi=300)
+    plt.savefig(args.output_plot, dpi=300)
 
     plt.show()
 
