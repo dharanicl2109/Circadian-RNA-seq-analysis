@@ -28,7 +28,7 @@ def main():
     df_t = df.T
 
     # Plot grouped bars
-    ax = df_t.plot(kind="bar", figsize=(10,6))
+    ax = df_t.plot(kind="bar", figsize=(12,6))
 
     plt.xlabel("PTM")
     plt.ylabel("R2")
