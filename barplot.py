@@ -34,6 +34,7 @@ def main():
     plt.ylabel("R2")
     plt.title("R2 values of PTMs across timepoints")
     plt.legend(title="Timepoint")
+    plt.xticks(rotation=0)
 
     plt.tight_layout()
 
