@@ -2,7 +2,7 @@
 
 """
 Generates a barplot using R2 values of features at different timepoints.
-The first row consists of timepoints and the first column coonsists of PTMs.
+The first row consists of input features as and the first column coonsists of timepoints.
 
 Usage:
     python3 barplot.py --input_r2 path/to/input_r2.csv --output_plot path/to/output_plot.png
