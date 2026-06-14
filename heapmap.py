@@ -2,10 +2,10 @@
 
 """
 Generates a heatmap of R2 values of two feature and one feature loss.
-It takes two files 
+It takes two csv files, one features and two feature
 
 Usage:
-    python3 heatmap.py --input_r2 path/to/i --output_plot path/to/output_plot.png
+    python3 heatmap.py  --two_feature /path/to/twofeature.csv  --single_feature /path/to/onefeature.csv --outdir /path/to/output_dir
 """
 
 import numpy as np
@@ -80,7 +80,6 @@ def plot_heatmap(matrix, title, ax):
 
 def main():
     args = parse_args()
-
     os.makedirs(args.outdir, exist_ok=True)
 
     df_two = pd.read_csv(args.two)
@@ -92,21 +91,17 @@ def main():
     timepoints = sorted(plot_df["timepoint"].unique())
 
     for tp in timepoints:
-        print(f"Plotting timepoint: {tp}")
-
         tp_df = plot_df[plot_df["timepoint"] == tp]
         diag_tp = diag_df[diag_df["timepoint"] == tp]
-
         matrix = build_matrix(tp_df, diag_tp)
 
         fig, ax = plt.subplots(figsize=(10, 8))
-        plot_heatmap(matrix, f"CV mean R² — Timepoint {tp}", ax)
+        plot_heatmap(matrix, f"CV mean R² at {tp}", ax)
         plt.tight_layout()
 
         outpath = os.path.join(args.outdir, f"heatmap_tp{tp}.png")
         plt.savefig(outpath, dpi=150, bbox_inches="tight")
         plt.close(fig)
-        print(f"Saved {outpath}")
 
 
 if __name__ == "__main__":
