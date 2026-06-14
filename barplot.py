@@ -14,7 +14,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate barplot of R2 values of each PTM timepoint-wise ")
+    parser = argparse.ArgumentParser(description="Generate barplot of R2 values of each input feature timepoint-wise ")
     parser.add_argument("--input_r2", required=True, help="Path to CSV file containing R2 values")
     parser.add_argument("--output_plot", required=True, help="Path to save output plot")
     args = parser.parse_args()
@@ -24,13 +24,13 @@ def main():
     # Make timepoint the index
     df = df.set_index("timepoint")
 
-    # Transpose so PTMs become x-axis groups
+    # Transpose so input features become x-axis groups
     df_t = df.T
 
     # Plot grouped bars
     ax = df_t.plot(kind="bar", figsize=(10,6))
 
-    plt.xlabel("PTM")
+    plt.xlabel("Input features")
     plt.ylabel("R2")
     plt.title("R2 values of PTMs across timepoints")
     plt.legend(title="Timepoint")
