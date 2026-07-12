@@ -23,7 +23,7 @@ import pandas as pd
 
 def main():
     parser = argparse.ArgumentParser(description="Generate heatmap for RNA-seq computeMatrix tab file")
-    parser.add_argument("--input_ptm_tab", required=True, help="Path to reordered PTM tab file")
+    parser.add_argument("--input_rna_tab", required=True, help="Path to reordered RNA-seq tab file")
     args = parser.parse_args()
 
     # input
