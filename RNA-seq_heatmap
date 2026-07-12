@@ -30,7 +30,7 @@ def main():
     df = pd.read_csv(args.input_ptm_tab,  sep='\t', comment='#', header=0)
 
     # select only signal columns
-    signal_df = df.select_dtypes(include=[np.number]).fillna(0).values
+    signal_df = df.select_dtypes(include=[np.number]).fillna(0)
     data = signal_df.values
 
     # number of bins
